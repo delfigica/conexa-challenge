@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Character } from "@/types/characters";
 import { getAllCharacters } from "@/services/characterService";
 import { CharacterCard } from "../Character Card/CharacterCard";
+import { CharacterContext } from "@/app/context/CharacterContext";
 
 import "./character-card-container.css";
 export const CharacterCardContainer = () => {
@@ -17,25 +18,31 @@ export const CharacterCardContainer = () => {
     getCharactherData();
   }, []);
 
-  const [selectedCharacterList, setSelectedCharacterList] = useState<
-    Character[]
-  >([]);
+  const characterContext = useContext(CharacterContext);
+
+  if (!characterContext) {
+    throw new Error(
+      "CharacterCardContainer must be used within a CharacterSelectProvider"
+    );
+  }
+
+  const { characterSelect, setCharacterSelect } = characterContext;
 
   const selectCharacter = (character: Character) => {
     let lengthCharacterSelectList = 2;
-    if (selectedCharacterList.includes(character)) {
-      let index = selectedCharacterList.indexOf(character);
+    if (characterSelect.includes(character)) {
+      let index = characterSelect.indexOf(character);
       let newList = [
-        ...selectedCharacterList.slice(0, index),
-        ...selectedCharacterList.slice(index + 1),
+        ...characterSelect.slice(0, index),
+        ...characterSelect.slice(index + 1),
       ];
-      setSelectedCharacterList(newList);
-    } else if (selectedCharacterList.length >= lengthCharacterSelectList) {
-      let newList = [...selectedCharacterList.slice(1), character];
-      setSelectedCharacterList(newList);
-    } else if (selectedCharacterList.length < lengthCharacterSelectList) {
-      let newList = [...selectedCharacterList, character];
-      setSelectedCharacterList(newList);
+      setCharacterSelect(newList);
+    } else if (characterSelect.length >= lengthCharacterSelectList) {
+      let newList = [...characterSelect.slice(1), character];
+      setCharacterSelect(newList);
+    } else if (characterSelect.length < lengthCharacterSelectList) {
+      let newList = [...characterSelect, character];
+      setCharacterSelect(newList);
     }
   };
 
@@ -46,7 +53,7 @@ export const CharacterCardContainer = () => {
           key={character.id}
           character={character}
           handleSelectCharacter={selectCharacter}
-          characterSelected={selectedCharacterList}
+          characterSelected={characterSelect}
         />
       ))}
     </div>

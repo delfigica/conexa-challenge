@@ -1,11 +1,11 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import { CharacterCardContainer } from "./components/Character Card Container/CharacterCardContainer";
+import { CharacterSelectProvider } from "./context/CharacterContext";
 
+import "./page.module.css";
 export default function Home() {
   return (
-    <div>
+    <CharacterSelectProvider>
       <CharacterCardContainer />
-    </div>
+    </CharacterSelectProvider>
   );
 }
