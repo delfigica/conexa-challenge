@@ -1,0 +1,5 @@
+.character-card-container {
+  background-color: #252525;
+  display: flex;
+  flex-wrap: wrap;
+}
