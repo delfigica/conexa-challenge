@@ -29,6 +29,7 @@ export const CharacterCardContainer = () => {
   const { characterSelect, setCharacterSelect } = characterContext;
 
   const selectCharacter = (character: Character) => {
+    // You can change the number of characters to be selected, if you do so, you must also change it in the < Home.tsx /> component in the properties of the <EpisodeTable.tsx /> component.
     let lengthCharacterSelectList = 2;
     if (characterSelect.includes(character)) {
       let index = characterSelect.indexOf(character);

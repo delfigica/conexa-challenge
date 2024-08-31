@@ -1,0 +1,10 @@
+.home {
+  display: flex;
+}
+.episode-table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2em;
+  width: 40vw;
+}
