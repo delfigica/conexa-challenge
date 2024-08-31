@@ -61,16 +61,20 @@
   border: 1px solid rgba(255, 255, 255, 0.562);
 }
 .image-character-box {
-  display: flex;
+  position: relative;
+  height: 250px;
 }
 .image-filter-selected {
-  background-color: #25252567;
-  width: 230px;
-  height: 250px;
+  background-color: rgba(37, 37, 37, 0.4);
+  width: 100%;
+  height: 100%; 
   position: absolute;
+  top: 0; 
+  left: 0; 
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 .number-selected-character {
   color: #fff;
