@@ -2,10 +2,12 @@
   background-color: #252525;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 60%;
   overflow-y: auto;
   overflow-x: hidden;
   height: 100vh;
+  padding-top: 20px;
 }
 .character-card-container::-webkit-scrollbar {
   width: 8px; /* Ancho de la barra de desplazamiento */

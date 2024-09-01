@@ -7,4 +7,20 @@
   justify-content: space-between;
   padding: 2em;
   width: 40vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.episode-table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.episode-table-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.episode-table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
