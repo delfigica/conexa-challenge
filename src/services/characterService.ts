@@ -2,12 +2,21 @@ import axios from "axios";
 
 const URL = "https://rickandmortyapi.com/api/character";
 
-import { Character, CharacterApiResponse } from "../types/characters";
+import {
+  Character,
+  CharacterApiResponse,
+  CharacterPagination,
+} from "../types/characters";
+import { useState } from "react";
 
-export const getAllCharacters = async (): Promise<Character[]> => {
+export const getAllCharacters = async (
+  page: string = '1'
+): Promise<Character[]> => {
   try {
-    const response = await axios.get<CharacterApiResponse>(URL);
-
+    const response = await axios.get<CharacterApiResponse>(
+      `${URL}/?page=${page}`
+    );
+    const pagination: CharacterPagination = response.data.info;
     const characters: Character[] = response.data.results.map((character) => ({
       id: character.id,
       name: character.name,
@@ -20,6 +29,21 @@ export const getAllCharacters = async (): Promise<Character[]> => {
   } catch (error) {
     console.log("Error fetching all characters:", error);
     return [];
+  }
+};
+
+export const getCharacterData = async (
+  page: string = '1'
+): Promise<CharacterApiResponse | null> => {
+  try {
+    const response = await axios.get<CharacterApiResponse>(
+      `${URL}/?page=${page}`
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching all characters:", error);
+    return null;
   }
 };
 
