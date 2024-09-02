@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/conexa-challenge',
+  output: "export",
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -12,4 +15,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

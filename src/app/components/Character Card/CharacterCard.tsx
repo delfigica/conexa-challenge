@@ -26,7 +26,7 @@ export const CharacterCard = ({
     >
       <div className="image-character-box">
         <Image
-          src={character.image}
+          src={character.image ? character.image : ""}
           alt={"Image character of rick and morty: " + character.name}
           width={230}
           height={250}

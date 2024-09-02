@@ -81,7 +81,7 @@ export const SharedTable = ({ lengthCharacterAvaibleToSelect }: props) => {
       <div className="episode-item-box">
         {/* Map through the list of shared episodes and display them */}
         {listEpisodes?.map((episode) => (
-          <p>
+          <p key={episode.id}>
             <b>{episode.episode}</b> - {episode.name} ({episode.air_date})
           </p>
         ))}
