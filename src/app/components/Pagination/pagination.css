@@ -34,3 +34,13 @@
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
 }
+
+/* mobile version */
+@media (max-width: 425px) {
+  .pagination  {
+    padding: 1em;
+  }
+  .pagination-items-container {
+    width: 60%;
+  }
+}

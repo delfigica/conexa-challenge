@@ -12,15 +12,41 @@
   overflow-x: hidden;
 }
 
-.episode-table-container::-webkit-scrollbar {
+.episode-table-container::-webkit-scrollbar,
+.character-card-container::-webkit-scrollbar,
+.episode-item-box::-webkit-scrollbar {
   width: 8px;
 }
 
-.episode-table-container::-webkit-scrollbar-thumb {
+.episode-table-container::-webkit-scrollbar-thumb,
+.character-card-container::-webkit-scrollbar-thumb,
+.episode-item-box::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 4px;
 }
 
-.episode-table-container::-webkit-scrollbar-thumb:hover {
+.episode-table-container::-webkit-scrollbar-thumb:hover,
+.character-card-container::-webkit-scrollbar-thumb:hover,
+.episode-item-box::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+/* laptop version */
+@media (max-width: 1050px) {
+  .episode-table-container {
+    width: 40vw;
+    padding: 1em;
+  }
+}
+
+/* tablet and mobile version */
+@media (max-width: 770px) {
+  .home {
+    flex-direction: column;
+  }
+  .episode-table-container {
+    width: 100%;
+    padding: 2em;
+    min-height: 100vh;
+  }
 }
