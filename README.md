@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CONEXA CHALLENGE
+
+Technical challenge for Conexa: The objective of this application is to display characters from the Rick and Morty series, which come from the API [https://rickandmortyapi.com/documentation](https://rickandmortyapi.com/documentation). A number of characters (default is two) are selected, and for each selected character, a list is returned of episodes in which the other characters do not appear. Additionally, a combined list of episodes where all selected characters appear together is provided.
+
+The application was built with Next.js using TypeScript, plain CSS, Axios, and was tested with Jest.
+
+## Live Version: [https://delfigica.github.io/conexa-challenge/](https://delfigica.github.io/conexa-challenge/)
+
+##  Challenge 
+The Rick and Morty API (https://rickandmortyapi.com/) will be used, analyzing it and meeting the following objectives:
+
+ - Obtain a list of characters, paginated, in two sections: Character #1 and Character #2.
+ - Each character must be displayed as a “Card” with their status and species.
+ - Below these two lists, there will be 3 sections:
+   
+- [x] Character #1 - Only Episodes: This section should list only the episodes where the character selected in the Character #1 section appears alone.
+- [x] Character #1 & Character #2 - Shared Episodes: This section should list the episodes where the characters selected in the Character #1 and Character #2 sections appear together.
+- [x] Character #2 - Only Episodes: This section should list only the episodes where the character selected in the Character #2 section appears alone.
 
 ## Getting Started
 
-First, run the development server:
-
+First, run the install command:
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Open [http://localhost:3000/conexa-challenge](http://localhost:3000/conexa-challenge) with your browser to see the result.
