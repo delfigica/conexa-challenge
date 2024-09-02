@@ -38,29 +38,33 @@ export const EpisodeTable = ({
 
   // Function to filter episodes so that only those unique to the selected character are shown
   const filterEpisodes = async () => {
-    const allEpisodes: Episode[][] = await Promise.all(
-      characterSelect.map(async (character) => {
-        const url = character.episode ? character.episode : [];
-        const episodes = await getEpisodes(url);
-        return episodes;
-      })
-    );
+    try {
+      const allEpisodes: Episode[][] = await Promise.all(
+        characterSelect.map(async (character) => {
+          const url = character.episode ? character.episode : [];
+          const episodes = await getEpisodes(url);
+          return episodes || [];
+        })
+      );
 
-    // Get the episodes for the current character based on their index
-    let characterEpisodes: Episode[] = allEpisodes[characterIndex];
+      // Get the episodes for the current character based on their index
+      let characterEpisodes: Episode[] = allEpisodes[characterIndex] || [];
 
-    // Filter episodes to exclude those that are shared with other selected characters
-    characterEpisodes = characterEpisodes.filter((episode) => {
-      return !allEpisodes.some((episodes, index) => {
-        return (
-          index !== characterIndex &&
-          episodes.some((ep) => ep.id === episode.id)
-        );
+      // Filter episodes to exclude those that are shared with other selected characters
+      characterEpisodes = characterEpisodes.filter((episode) => {
+        return !allEpisodes.some((episodes, index) => {
+          return (
+            index !== characterIndex &&
+            episodes.some((ep) => ep.id === episode.id)
+          );
+        });
       });
-    });
 
-    // Update the state with the filtered episodes
-    setListEpisodes(characterEpisodes);
+      // Update the state with the filtered episodes
+      setListEpisodes(characterEpisodes);
+    } catch (error) {
+      setListEpisodes([]);
+    }
   };
 
   // Effect to filter episodes when the selected characters or the length of characters to select changes
@@ -90,7 +94,7 @@ export const EpisodeTable = ({
       <div className="episode-item-box">
         {/* Map through the list of episodes and display them */}
         {listEpisodes?.map((episode) => (
-          <p>
+          <p key={episode.id}>
             <b>{episode.episode}</b> - {episode.name} ({episode.air_date})
           </p>
         ))}

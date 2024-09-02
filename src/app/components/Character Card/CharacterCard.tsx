@@ -16,6 +16,7 @@ export const CharacterCard = ({
 }: props) => {
   return (
     <div
+      data-testid="character-card"
       className={
         characterSelected.includes(character)
           ? "card-character card-selected"

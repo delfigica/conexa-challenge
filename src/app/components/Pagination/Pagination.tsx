@@ -63,6 +63,7 @@ export const Pagination = ({
   return (
     <div className="pagination">
       <button
+        data-testid="btn-prev"
         className="pagination-btn"
         onClick={prevPage}
         disabled={currentPage === 1} // Disable the "prev" button if on the first page
@@ -71,6 +72,7 @@ export const Pagination = ({
       </button>
       <div className="pagination-items-container">{pageNumbers()}</div>
       <button
+        data-testid="btn-next"
         className="pagination-btn"
         onClick={nextPage}
         disabled={currentPage === totalPages} // Disable the "next" button if on the last page

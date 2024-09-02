@@ -32,25 +32,34 @@ export const SharedTable = ({ lengthCharacterAvaibleToSelect }: props) => {
 
   // Function to filter episodes so that only those shared by all selected characters are shown
   const filterEpisodes = async () => {
-    const allEpisodes: Episode[][] = await Promise.all(
-      characterSelect.map(async (character) => {
-        const url = character.episode ? character.episode : [];
-        const episodes = await getEpisodes(url);
-        return episodes;
-      })
-    );
-
-    // Start with the episodes of the first character and filter to keep only those shared by all selected characters
-    let sharedEpisodes: Episode[] = allEpisodes[0];
-
-    sharedEpisodes = sharedEpisodes.filter((episode) => {
-      return allEpisodes.every((episodes) =>
-        episodes.some((ep) => ep.id === episode.id)
+    try {
+      if (characterSelect.length === 0) {
+        setListEpisodes([]);
+        return;
+      }
+      const allEpisodes: Episode[][] = await Promise.all(
+        characterSelect.map(async (character) => {
+          const url = character.episode ? character.episode : [];
+          const episodes = await getEpisodes(url);
+          return episodes || [];
+        })
       );
-    });
 
-    // Update the state with the filtered episodes
-    setListEpisodes(sharedEpisodes);
+      // Start with the episodes of the first character and filter to keep only those shared by all selected characters
+      let sharedEpisodes: Episode[] = allEpisodes[0] || [];
+
+      sharedEpisodes = sharedEpisodes.filter((episode) => {
+        return allEpisodes.every(
+          (episodes) => episode && episodes.some((ep) => ep.id === episode.id)
+        );
+      });
+
+      // Update the state with the filtered episodes
+      setListEpisodes(sharedEpisodes);
+    } catch (error) {
+      console.error("Error filtering episodes:", error);
+      setListEpisodes([]);
+    }
   };
 
   // Effect to filter episodes when the selected characters or the length of characters to select changes
