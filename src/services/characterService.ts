@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Base URL for the Rick and Morty API
 const URL = "https://rickandmortyapi.com/api/character";
 
 import {
@@ -7,16 +8,16 @@ import {
   CharacterApiResponse,
   CharacterPagination,
 } from "../types/characters";
-import { useState } from "react";
 
+// Function to fetch all characters with pagination
 export const getAllCharacters = async (
   page: string = '1'
 ): Promise<Character[]> => {
   try {
+    // Fetching characters from the API with pagination
     const response = await axios.get<CharacterApiResponse>(
       `${URL}/?page=${page}`
     );
-    const pagination: CharacterPagination = response.data.info;
     const characters: Character[] = response.data.results.map((character) => ({
       id: character.id,
       name: character.name,
@@ -32,10 +33,12 @@ export const getAllCharacters = async (
   }
 };
 
+// Function to fetch character data including pagination info
 export const getCharacterData = async (
   page: string = '1'
 ): Promise<CharacterApiResponse | null> => {
   try {
+    // Fetching character data from the API with pagination info
     const response = await axios.get<CharacterApiResponse>(
       `${URL}/?page=${page}`
     );
@@ -47,6 +50,7 @@ export const getCharacterData = async (
   }
 };
 
+// Function to fetch a single character by ID
 export const getCharacter = async (id: number): Promise<Character | null> => {
   try {
     const response = await axios.get<Character>(URL + "/" + id);
@@ -65,24 +69,3 @@ export const getCharacter = async (id: number): Promise<Character | null> => {
   }
 };
 
-export const getTwoCharacters = async (
-  id1: number,
-  id2: number
-): Promise<Character[]> => {
-  try {
-    const response = await axios.get<Character[]>(`${URL}/${id1},${id2}`);
-
-    const character: Character[] = response.data.map((character) => ({
-      id: character.id,
-      name: character.name,
-      status: character.status,
-      image: character.image,
-      species: character.species,
-      episode: character.episode,
-    }));
-    return character;
-  } catch (error) {
-    console.log("Error fetching the characters:", error);
-    return [];
-  }
-};
